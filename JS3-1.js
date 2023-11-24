@@ -5,6 +5,14 @@ class ParkingGarage {
     this.currentTicket = {};
   }
 
+  displayMenu() {
+    console.log("Options:");
+    console.log("1. Take a ticket");
+    console.log("2. Pay for parking");
+    console.log("3. Leave the garage");
+    console.log("4. Quit");
+  }
+
   takeTicket() {
     if (this.tickets.length === 0) {
       console.log("Sorry, the parking garage is full.");
@@ -69,9 +77,33 @@ class ParkingGarage {
       }
     }
   }
+
+  run() {
+    let userChoice;
+
+    do {
+      this.displayMenu();
+      userChoice = prompt("Enter the number corresponding to your choice:");
+
+      switch (userChoice) {
+        case "1":
+          this.takeTicket();
+          break;
+        case "2":
+          this.payForParking();
+          break;
+        case "3":
+          this.leaveGarage();
+          break;
+        case "4":
+          console.log("Goodbye!");
+          break;
+        default:
+          console.log("Invalid choice. Please enter a number from 1 to 4.");
+      }
+    } while (userChoice !== "4");
+  }
 }
 
 const garage = new ParkingGarage();
-garage.takeTicket();
-garage.payForParking();
-garage.leaveGarage();
+garage.run();
